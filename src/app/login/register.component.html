@@ -1,0 +1,90 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    <app-header></app-header>
+
+    <app-sidebar></app-sidebar>
+
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            
+            <app-breadcrumbs [titleBreadCrumb]="'Create new Account'"></app-breadcrumbs>
+              <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form>
+                                  <div class="form-group">
+                                    <label for="username">UserName:</label>
+                                    <input type="text"
+                                            name="username"
+                                            class="form-control"
+                                            id="username"
+                                            placeholder="username"
+                                    >
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="text"
+                                            name="email"
+                                            class="form-control"
+                                            id="email"
+                                            placeholder="email"
+                                    >
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="password">Password:</label>
+                                      <input type="text"
+                                              name="password"
+                                              class="form-control"
+                                              id="password"
+                                              placeholder="password"
+                                      >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="confirm_pass">Confirm password:</label>
+                                        <input type="text"
+                                                name="confirm_password"
+                                                class="form-control"
+                                                id="confirm_pass"
+                                                placeholder="confirm password"
+                                        >
+                                      </div>
+
+                                  <input type="submit"
+                                          value="Register"
+                                          name="submit"
+                                          class="btn btn-primary btn-md"
+                                  >
+                                </form>
+
+                                <p class="text-info mt-3">
+                                  <i class="fa fa-log-in"></i>
+                                you have an account?
+                                  <b><a [routerLink]="login" class="text-primary">Log In</a></b>
+                                </p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+        </div>
+
+    </div>
+
+</div><!--  end 'main-wrapper' -->
