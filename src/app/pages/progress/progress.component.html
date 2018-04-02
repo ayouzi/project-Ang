@@ -1,3 +1,57 @@
-<p>
-  progress works!
-</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+              <div class="card-title">Download Progress</div>
+
+              <div class="progress">
+                  <div class="progress-bar"
+                      role="progressbar" 
+                      
+                      [style.width]="progress1 +'%'"
+                      [attr.ariaValue]="progress1"
+                      
+                      aria-valuemin="0" 
+                      aria-valuemax="100">{{progress1}}</div>
+                </div>
+
+                <div class="progress mt-2">
+                    <div class="progress-bar bg-success "
+                        role="progressbar" 
+                        
+                        [style.width]="progress2 +'%'"
+                        [attr.ariaValue]="progress2"
+                        
+                        aria-valuemin="0" 
+                        aria-valuemax="100">{{progress2}}</div>
+                  </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>    
+
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+
+        <app-increment (changeValue)="progress1 = $event" [title]="'Progress Bleu'" [progress]="progress1"></app-increment>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+  
+          <app-increment (changeValue)="progress2 = $event" [title]="'Progress vert'" [progress]="progress2"></app-increment>
+          
+        </div>
+      </div>
+    </div>
+
+</div>
