@@ -12,6 +12,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProgressComponent } from "./progress/progress.component";
 import { Graficas1Component } from "./graficas1/graficas1.component";
 import { IncrementComponent } from "../components/increment/increment.component";
+import { AcountSettingComponent } from './acount-setting/acount-setting.component';
 
 
 
@@ -22,7 +23,8 @@ import { IncrementComponent } from "../components/increment/increment.component"
         DashboardComponent,
         ProgressComponent,
         Graficas1Component,
-        IncrementComponent
+        IncrementComponent,
+        AcountSettingComponent
 
     ],
     

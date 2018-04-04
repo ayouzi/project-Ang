@@ -1,0 +1,17 @@
+<h2 class="card-title">{{title}}</h2>
+<div class="input-group">
+    <span class="input-group-btn">
+      <button class="btn btn-primary" type="button" (click)='changeV(-5)'>
+        <i class="mdi mdi-minus"></i>
+      </button>
+    </span>
+
+    <input #elText type="number" class="form-control" [value]="progress" name="progress" [(ngModel)]="progress"  (ngModelChange)="oChanges($event)">
+
+    <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" (click)='changeV(+5)'>
+          <i class="mdi mdi-plus"></i>
+        </button>
+    </span>
+
+</div>
