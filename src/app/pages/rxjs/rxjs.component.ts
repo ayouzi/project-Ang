@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
   styles: []
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent implements OnInit, OnDestroy {
   
 
 /**
@@ -69,7 +69,7 @@ export class RxjsComponent implements OnInit {
 * 
 * ############################################################
 * 
-* ##### => Retry()
+* ##### => ((((((((((((((Retry()))))))))))))))
 * 
 * had function tatb9a t3awd lina code 
 * Example:
@@ -81,15 +81,134 @@ export class RxjsComponent implements OnInit {
 
     ila darna (obs.retry(2).subscribe..), ghadi i3awdo 2 mrate o iwkaaf o inafad lina 
     code error
+
+    ila kan error mabghatch takhdam , khass tkon 
+      (((((import { Observable } from 'rxjs/Rx';)))))
+      Observable njiboh min Rx, bach ijib lina maktaba kamla
 * -------------------------------------------------------
 * hna darna function loadInterval(), darna fiha var obs li ghada dir lina loop
 * o 3tina function anaha type (Observable) o type value number
+
+####################################################################################
+
+### => (((((((((((((((((((((((((((map())))))))))))))))))))))))))))
+
+hadi tatjib lina value object direct
+
+example:
+  mli ndiro fi function loadInterval()
+  mli tssad ndifo hdaha 
+
+    .map((res: any) => {
+
+      return res.valor;
+    })
+
+
+    had valie jaya min next(), fiha variable fi hakda 
+
+    let val = {
+      valor : conta
+    }
+    dog.next(val);
+
+    hna khdaina object li ji ghadi ikon hakda fi (setInterval)
+      
+    valor : 1
+    valor : 2
+    ...
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    ### => (((((((((((((((((((((((((((filter())))))))))))))))))))))))))))
+
+    had filter tatkhdam filter lina result li jaya
+
+    o dima ttrja3 lina bi boolean(true or false), ila kante true tatrja3 lina bi value li fi 
+    next()
+
+    Example:
+
+      .filter((val,index) => {
+
+        if(val === "sport")
+        {
+          return true;
+        }
+      })
+
+
+      hna fi filter fiha (2 params), value li jaya min next, o index tartibe dialo (tibda min 0)
+
+      o hna fi (if) ila kant had val == "sport", ghadi tarja3 bi true , hiya ghadi ijib 
+
+      had value
+      """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+      
+      ((((((((((((((((((((((((((unsubscribe()))))))))))))))))))))))))))
+
+      kin wahd probleme, howa mli tandiro example setIntervale,
+      o madrnach lih clear m3a if, tib9a khdam fi backend wakha nbadlo page 
+
+      l7al howa unsubscribe + ngOnDestroy
+
+      - OnDestroy = howa function lifecycle dial NG,
+
+        tatnafad mli tanghadro page 
+
+        njiboha lfo9 : 
+          import { Component, OnInit, OnDestroy } from '@angular/core';
+
+
+        
+          o ndiro liha implements :
+
+              ... implements OnInit, OnDestroy {
+
+          
+                o ndiro 
+
+            ngOnDestroy()
+            {
+              ...
+            }
+          
+  ------------------------------------------------------------------
+
+  unsubscribe : hia tatmsa7 lina subscribe li darna 
+
+    ndiro variable : subscription : Subscription;
+
+    darna ano type dialo ""Subscription""
+
+    njiboha fo9 m3a Observable :
+      
+    import { Observable, Subscription } from 'rxjs/Rx';
+
+    o fi dik function li ttanafad setInterval ndiroha fi variable
+
+       this.subscription = this.loadInterval().subscribe( ...
+
+
+      daba ghir namchiw (ngOnDestroy) o ndiro :
+
+    ngOnDestroy()
+      {
+          this.subscription.unsubscribe();
+      }
+    
+      darna lih unsubscribe, mli ighadar page (rxjs)
+        
+
+
+
+
+
 */
 
-   
+   subscription : Subscription;
   constructor() {
 
-    this.loadInterval().subscribe(
+    this.subscription = this.loadInterval().subscribe(
        number => console.log(number),
        error => console.log("error for load", error),
        ()  => console.log("is complete load this file")
@@ -100,7 +219,11 @@ export class RxjsComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
+  ngOnDestroy()
+  {
+      this.subscription.unsubscribe();
+  }
 
   loadInterval() : Observable<any>
   {
@@ -114,15 +237,28 @@ export class RxjsComponent implements OnInit {
 
         dog.next(conta);
 
-        if(conta === 3)
-        {
-          clearInterval(inter);
+        // if(conta === 3)
+        // {
+        //   dog.error("no");
           
-        }
+        // }
 
-      },1000);
+      },200);
 
-    }).retry();
+    }).retry(5)
+    .filter((value,index) => {
+      
+      // if(value === 2)
+      // {
+      //   return true;
+      // }else{
+      //   return false;
+      // }
+
+      return true
+      
+    })
+    ;
   }
 
 }
